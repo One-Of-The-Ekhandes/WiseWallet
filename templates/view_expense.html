@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}View Expenses{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h1>Expense History</h1>
+
+    {% if expenses %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Amount</th>
+                <th>Category</th>
+                <th>Date</th>
+                <th>Note</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for expense in expenses %}
+            <tr>
+                <td>₹{{ expense[0] }}</td>
+                <td>
+                    <span class="badge bg-primary">{{ expense[1] }}</span>
+                </td>
+                <td>{{ expense[2] }}</td>
+                <td>{{ expense[3] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="alert alert-info">No expenses recorded yet.</div>
+    {% endif %}
+
+    <a href="/" class="btn btn-outline-primary">Back to Add Expense</a>
+</div>
+{% endblock %}
